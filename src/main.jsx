@@ -10,9 +10,9 @@ const projectMedia = {
   '03': Array.from({ length: 20 }, (_, index) => ({ source: `/assets/ai-gallery-${index + 1}.png`, kind: 'image' })),
 }
 const projects = [
-  { id: '01', type: 'VISUAL SYSTEM / MOTION', title: 'AI MOTION NARRATIVE', body: 'Concept, motion and visual storytelling with AI assisted production.' },
-  { id: '02', type: 'CAMPUS AI / SELECTED WORK', title: 'CAMPUS AI WORKS', body: 'Selected AI visual experiments created through campus practice.' },
-  { id: '03', type: 'AI IMAGE / COLLECTION', title: 'AI IMAGE COLLECTION', body: 'Twenty AI image studies across character, world and atmosphere.' },
+  { id: '01', type: 'VISUAL SYSTEM / MOTION', title: 'AI动画视觉叙事', body: '从概念设定到动态镜头，以 AI 辅助建立可延展的视觉叙事语言。' },
+  { id: '02', type: 'CAMPUS AI / SELECTED WORK', title: '校园AI作品', body: '围绕校园创作实践完成的 AI 影像作品，以镜头语言与视觉想象呈现叙事表达。' },
+  { id: '03', type: 'AI IMAGE / COLLECTION', title: 'AI图集作品展示', body: '二十张 AI 图像作品，涵盖人物、场景与风格化视觉实验。' },
 ]
 const capabilities = [
   ['01', 'AI内容生产', '从需求拆解、分镜到素材生成与后期交付，建立稳定的 AI 内容生产链路。'],
@@ -104,15 +104,16 @@ function App() {
       <div className="about-copy"><div className="about-intro"><p className="eyebrow">HELLO, I'M</p><h2 className={'about-name ' + (nameScan ? 'is-scanning' : '')} onPointerLeave={triggerName}><span className="name-letter" data-letter="王">王</span><span className="name-letter" data-letter="胤">胤</span><span className="about-role" data-role="AI Designer">AI Designer</span></h2><p className="intro">专注于 AI 内容生产与视觉创作，熟悉动画制作流程，通过 AI 工具与设计判断的结合提升团队协同效率。</p></div><div className="education"><span>教育背景</span><div><b>2022.09 - 2026.07</b><b>华南农业大学</b><b>动画专业</b><b>本科</b></div></div><div className="contact-lines"><button className="contact-copy" type="button" onClick={() => notify('WeChat signal saved. Search Unwikl.') }><span>微信</span>Unwikl</button><button className="contact-copy" type="button" onClick={copyEmail}><span>邮箱</span>13662852993@163.com</button><p><span>所在地</span>广州 / 中国</p></div></div>
     </div></section>
 
-    <section className="works section" id="work"><div className="shell"><div className="works-heading"><div className="section-label"><span>02</span> SELECTED WORK</div><h2>SELECTED WORK</h2><p>ALL WORKS ARE FOR PORTFOLIO PRESENTATION ONLY</p></div><div className="project-list">{projects.map((project) => <ElectricBorder className="project-case-panel" color="#b68aff" key={project.id}><article className="project-case"><div className="project-video-slot"><div className="project-video-grid" /><span className="video-index">{project.id}</span><div className="video-placeholder"><i>播放</i><p>项目媒体<br />滚轮查看</p></div></div><div className="project-case-copy"><p className="project-type">{project.type}</p><h3>{project.title}</h3><p className="project-summary">{project.body}</p><button type="button" className="project-detail" onClick={() => openProject(project.id)}>查看项目 <Arrow /></button></div></article></ElectricBorder>)}</div></div></section>
+    <section className="works section" id="work"><div className="shell"><div className="works-heading"><div className="section-label"><span>02</span> SELECTED WORK</div><h2>精选作品</h2><p>所有作品均只作为求职展示</p></div><div className="project-list">{projects.map((project) => <ElectricBorder className="project-case-panel" color="#b68aff" key={project.id}><article className="project-case"><div className="project-video-slot"><div className="project-video-grid" /><span className="video-index">{project.id}</span><div className="video-placeholder"><i>播放</i><p>项目媒体<br />滚轮查看</p></div></div><div className="project-case-copy"><p className="project-type">{project.type}</p><h3>{project.title}</h3><p className="project-summary">{project.body}</p><button type="button" className="project-detail" onClick={() => openProject(project.id)}>查看项目 <Arrow /></button></div></article></ElectricBorder>)}</div></div></section>
 
-    <section className="ability section shell" id="ability"><div className="ability-header"><div className="section-label"><span>03</span> SYSTEM</div><h2>CREATIVE<br />SYSTEMS</h2></div><div className="capability-list">{capabilities.map(([number, title, body]) => <ElectricBorder className="capability-panel" color="#b68aff" key={number}><article className="capability"><span className="cap-number">{number}</span><h3>{title}</h3><p>{body}</p><Arrow /></article></ElectricBorder>)}</div><ElectricBorder className="tool-panel" color="#b68aff"><div className="tool-strip"><span>常用工具</span><p>ChatGPT X ComfyUI X Midjourney X AE</p></div></ElectricBorder></section>
+    <section className="ability section shell" id="ability"><div className="ability-header"><div className="section-label"><span>03</span> SYSTEM</div><h2>让灵感落地<br />让流程更快</h2></div><div className="capability-list">{capabilities.map(([number, title, body]) => <ElectricBorder className="capability-panel" color="#b68aff" key={number}><article className="capability"><span className="cap-number">{number}</span><h3>{title}</h3><p>{body}</p><Arrow /></article></ElectricBorder>)}</div><ElectricBorder className="tool-panel" color="#b68aff"><div className="tool-strip"><span>常用工具</span><p>ChatGPT X ComfyUI X Midjourney X AE</p></div></ElectricBorder></section>
 
     <section className="footer-cta" id="contact"><div className="footer-noise" /><div className="shell footer-inner"><p className="eyebrow">开启一段对话</p><h2>下一段视觉<br /><em>想象，一起发生。</em></h2><button className="email-link" type="button" onClick={copyEmail}>13662852993@163.com <Arrow /></button><div className="footer-line"><span>2026 WANGYIN</span><a href="#top">返回顶部</a><span>AI设计师 / 广州</span></div></div></section>
   </main>
 }
 
 createRoot(document.getElementById('root')).render(<App />)
+
 
 
 
