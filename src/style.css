@@ -456,3 +456,15 @@ body { background: #08080b; }
   .project-player-hint, .project-player-progress { grid-column: 1; justify-self: start; }
   .project-player-media img { height: 54vh; }
 }
+/* Persistent navigation with shared click and scroll indicator */
+.nav.nav-pinned {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  width: min(calc(100% - 48px), 1700px);
+  transform: translateX(-50%);
+  z-index: 100;
+}
+.hero,
+.section,
+.footer-cta { scroll-margin-top: 100px; }

@@ -22,3 +22,7 @@
 - `project-spaceship.mp4`, `project-mecha-dog.mp4`, `project-thirty-seconds.mp4`
 - `ai-gallery-1.png` through `ai-gallery-20.png`
 - `wangyin-photo.png`
+## v0.1.2 — 固定导航与定位提示
+- 导航栏固定在页面顶部。
+- 点击或滚动到“关于我 / 作品精选 / 能力体系”时，同步显示对应的紫色底部提示条。
+- 保持平滑锚点定位，避免固定导航遮挡章节标题。
