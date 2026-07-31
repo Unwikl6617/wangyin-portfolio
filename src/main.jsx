@@ -20,7 +20,7 @@ const capabilities = [
   ['03', '动画流程', '理解动画制作上下游协作，围绕镜头与节奏设计可进入制作流程的视觉资产。'],
   ['04', '团队协同', '将工具使用沉淀为可复用的方法与培训，提升团队创作效率与协同质量。'],
 ]
-const Arrow = () => <span className="arrow">-&gt;</span>
+const Arrow = () => <span className="arrow">↗</span>
 
 function App() {
   const [heroIndex, setHeroIndex] = useState(0)
@@ -113,5 +113,6 @@ function App() {
 }
 
 createRoot(document.getElementById('root')).render(<App />)
+
 
 
