@@ -100,7 +100,7 @@ function App() {
     </section>
 
     <section className="about section shell" id="about"><div className="section-label"><span>01</span> PROFILE</div><div className="about-grid">
-      <ElectricBorder className="portrait-panel" color="#b68aff"><div className="portrait-wrap"><img src="/assets/wangyin-photo.png" alt="Wangyin portrait" draggable={false} onContextMenu={(event) => event.preventDefault()} /><div className="portrait-mark">Unwikl</div></div><p className="portrait-intent">AI DESIGNER | AI PRODUCER | AI DIRECTOR</p></ElectricBorder>
+      <ElectricBorder className="portrait-panel" color="#b68aff"><div className="portrait-wrap"><img src="/assets/wangyin-photo.png" alt="Wangyin portrait" draggable={false} onContextMenu={(event) => event.preventDefault()} /><div className="portrait-mark">Unwikl</div></div><p className="portrait-intent">AI设计师｜AI制片｜AI导演向</p></ElectricBorder>
       <div className="about-copy"><div className="about-intro"><p className="eyebrow">HELLO, I'M</p><h2 className={'about-name ' + (nameScan ? 'is-scanning' : '')} onPointerLeave={triggerName}><span className="name-letter" data-letter="王">王</span><span className="name-letter" data-letter="胤">胤</span><span className="about-role" data-role="AI Designer">AI Designer</span></h2><p className="intro">专注于 AI 内容生产与视觉创作，熟悉动画制作流程，通过 AI 工具与设计判断的结合提升团队协同效率。</p></div><div className="education"><span>教育背景</span><div><b>2022.09 - 2026.07</b><b>华南农业大学</b><b>动画专业</b><b>本科</b></div></div><div className="contact-lines"><button className="contact-copy" type="button" onClick={() => notify('WeChat signal saved. Search Unwikl.') }><span>微信</span>Unwikl</button><button className="contact-copy" type="button" onClick={copyEmail}><span>邮箱</span>13662852993@163.com</button><p><span>所在地</span>广州 / 中国</p></div></div>
     </div></section>
 
@@ -113,6 +113,7 @@ function App() {
 }
 
 createRoot(document.getElementById('root')).render(<App />)
+
 
 
 

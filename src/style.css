@@ -499,3 +499,14 @@ body { background: #08080b; }
   font-style: normal;
   letter-spacing: inherit;
 }
+
+/* Keep the three project cards steady on hover. */
+.project-case-panel:hover {
+  transform: none;
+  filter: none;
+}
+.project-case-panel::before,
+.project-case-panel::after {
+  display: none;
+}
+
