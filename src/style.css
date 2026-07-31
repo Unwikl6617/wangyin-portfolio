@@ -475,3 +475,20 @@ body { background: #08080b; }
 .project-player-media {
   overscroll-behavior: contain;
 }
+
+/* Clear purple hover feedback for navigation actions. */
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: #d493ff !important;
+}
+.contact-pill:hover,
+.contact-pill:focus-visible {
+  color: #e7c9ff !important;
+  border-color: #c77dff !important;
+  background: rgba(166, 88, 233, .22) !important;
+  box-shadow: 0 0 22px rgba(186, 105, 255, .28);
+}
+.contact-pill:hover .arrow,
+.contact-pill:focus-visible .arrow {
+  color: #e7c9ff;
+}
