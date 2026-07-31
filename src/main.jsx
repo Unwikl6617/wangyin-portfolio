@@ -101,7 +101,7 @@ function App() {
 
     <section className="about section shell" id="about"><div className="section-label"><span>01</span> PROFILE</div><div className="about-grid">
       <ElectricBorder className="portrait-panel" color="#b68aff"><div className="portrait-wrap"><img src="/assets/wangyin-photo.png" alt="Wangyin portrait" draggable={false} onContextMenu={(event) => event.preventDefault()} /><div className="portrait-mark">Unwikl</div></div><p className="portrait-intent">AI DESIGNER | AI PRODUCER | AI DIRECTOR</p></ElectricBorder>
-      <div className="about-copy"><div className="about-intro"><p className="eyebrow">你好，我是</p><h2 className={'about-name ' + (nameScan ? 'is-scanning' : '')} onPointerLeave={triggerName}><span className="name-letter" data-letter="W">王</span><span className="name-letter" data-letter="胤">胤</span><span className="about-role" data-role="AI设计师">AI设计师</span></h2><p className="intro">专注于 AI 内容生产与视觉创作，熟悉动画制作流程，通过 AI 工具与设计判断的结合提升团队协同效率。</p></div><div className="education"><span>教育背景</span><div><b>2022.09 - 2026.07</b><b>华南农业大学</b><b>动画专业</b><b>本科</b></div></div><div className="contact-lines"><button className="contact-copy" type="button" onClick={() => notify('WeChat signal saved. Search Unwikl.') }><span>微信</span>Unwikl</button><button className="contact-copy" type="button" onClick={copyEmail}><span>邮箱</span>13662852993@163.com</button><p><span>所在地</span>广州 / 中国</p></div></div>
+      <div className="about-copy"><div className="about-intro"><p className="eyebrow">HELLO, I'M</p><h2 className={'about-name ' + (nameScan ? 'is-scanning' : '')} onPointerLeave={triggerName}><span className="name-letter" data-letter="王">王</span><span className="name-letter" data-letter="胤">胤</span><span className="about-role" data-role="AI Designer">AI Designer</span></h2><p className="intro">专注于 AI 内容生产与视觉创作，熟悉动画制作流程，通过 AI 工具与设计判断的结合提升团队协同效率。</p></div><div className="education"><span>教育背景</span><div><b>2022.09 - 2026.07</b><b>华南农业大学</b><b>动画专业</b><b>本科</b></div></div><div className="contact-lines"><button className="contact-copy" type="button" onClick={() => notify('WeChat signal saved. Search Unwikl.') }><span>微信</span>Unwikl</button><button className="contact-copy" type="button" onClick={copyEmail}><span>邮箱</span>13662852993@163.com</button><p><span>所在地</span>广州 / 中国</p></div></div>
     </div></section>
 
     <section className="works section" id="work"><div className="shell"><div className="works-heading"><div className="section-label"><span>02</span> 作品精选</div><h2>作品精选</h2><p>所有作品均只作为求职展示</p></div><div className="project-list">{projects.map((project) => <ElectricBorder className="project-case-panel" color="#b68aff" key={project.id}><article className="project-case"><div className="project-video-slot"><div className="project-video-grid" /><span className="video-index">{project.id}</span><div className="video-placeholder"><i>播放</i><p>项目媒体<br />滚轮查看</p></div></div><div className="project-case-copy"><p className="project-type">{project.type}</p><h3>{project.title}</h3><p className="project-summary">{project.body}</p><button type="button" className="project-detail" onClick={() => openProject(project.id)}>查看项目 <Arrow /></button></div></article></ElectricBorder>)}</div></div></section>
@@ -113,6 +113,7 @@ function App() {
 }
 
 createRoot(document.getElementById('root')).render(<App />)
+
 
 
 
