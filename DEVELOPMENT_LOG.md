@@ -1,0 +1,24 @@
+# Development Log
+
+## Versioning Rules
+
+- Every accepted website change is recorded here and saved as a local Git commit.
+- Each commit uses a short version tag such as `v0.1.0` and can be restored by tag or commit ID.
+- `public/assets/` is intentionally excluded from Git because videos and image collections are large. Each log entry lists newly added asset filenames.
+- Before a new change, create a checkpoint commit. If the result is not approved, restore the prior checkpoint.
+
+## v0.1.0 - Stable Recovery Baseline
+
+- Rebuilt a stable React + Vite entry point after encoding damage.
+- Restored the hero video sequence, hover scan interactions, active navigation indicator, profile, work, ability and contact sections.
+- Restored project media player: wheel switching, media stop-on-switch, centered progress nodes and image gallery windowing.
+- Project 02 is labeled Campus AI Works and uses `campus-ai-work.mp4` as its first video.
+- Project 03 uses the imported 20-image AI gallery.
+
+### Asset Manifest
+
+- `hero-showcase.mp4`, `hero-short-clip.mp4`, `hero-star-road.mp4`
+- `campus-ai-work.mp4`, `campus-shen-sui.mp4`
+- `project-spaceship.mp4`, `project-mecha-dog.mp4`, `project-thirty-seconds.mp4`
+- `ai-gallery-1.png` through `ai-gallery-20.png`
+- `wangyin-photo.png`

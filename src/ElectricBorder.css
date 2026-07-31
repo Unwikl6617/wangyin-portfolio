@@ -1,0 +1,40 @@
+.electric-border {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  --electric-color: #b78cff;
+  position: relative;
+  isolation: isolate;
+  border-radius: inherit;
+  transition: transform .42s cubic-bezier(.2,.8,.2,1), filter .42s ease;
+}
+.electric-border::before,
+.electric-border::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+.electric-border::before {
+  z-index: 2;
+  inset: -1px;
+  padding: 1px;
+  background: conic-gradient(from 0deg, transparent 0 18%, var(--electric-color) 25%, rgba(255,255,255,.94) 29%, transparent 36% 59%, var(--electric-color) 68%, transparent 76% 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: electric-trace 5.5s linear infinite;
+}
+.electric-border::after {
+  z-index: -1;
+  inset: -14px;
+  background: radial-gradient(175px circle at var(--pointer-x) var(--pointer-y), color-mix(in srgb, var(--electric-color) 40%, transparent), transparent 70%);
+  filter: blur(16px);
+}
+.electric-border:hover { transform: translateY(-5px); filter: brightness(1.05); }
+.electric-border:hover::before,
+.electric-border:hover::after { opacity: 1; }
+.electric-border__content { position: relative; z-index: 1; border-radius: inherit; height: 100%; }
+@keyframes electric-trace { to { transform: rotate(1turn); } }
+@media (prefers-reduced-motion: reduce) { .electric-border::before { animation: none; }.electric-border:hover { transform: none; } }
