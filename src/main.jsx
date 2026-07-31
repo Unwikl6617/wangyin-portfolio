@@ -51,6 +51,19 @@ function App() {
     return () => window.removeEventListener('scroll', update)
   }, [])
 
+  useEffect(() => {
+    if (!playerOpen) return undefined
+
+    const htmlOverflow = document.documentElement.style.overflow
+    const bodyOverflow = document.body.style.overflow
+    document.documentElement.style.overflow = 'hidden'
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.documentElement.style.overflow = htmlOverflow
+      document.body.style.overflow = bodyOverflow
+    }
+  }, [playerOpen])
   const notify = (message) => { setToast(message); window.setTimeout(() => setToast(''), 2800) }
   const copyEmail = async () => { try { await navigator.clipboard.writeText('13662852993@163.com') } catch {} ; notify('Email copied. Contact Wangyin anytime.') }
   const triggerHero = () => { setHeroScan(false); requestAnimationFrame(() => { setHeroScan(true); window.setTimeout(() => setHeroScan(false), 980) }) }
@@ -100,4 +113,5 @@ function App() {
 }
 
 createRoot(document.getElementById('root')).render(<App />)
+
 

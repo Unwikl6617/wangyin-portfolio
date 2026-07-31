@@ -468,3 +468,10 @@ body { background: #08080b; }
 .hero,
 .section,
 .footer-cta { scroll-margin-top: 100px; }
+
+/* The project reel owns wheel input while it is open. */
+.project-player,
+.project-player-window,
+.project-player-media {
+  overscroll-behavior: contain;
+}
