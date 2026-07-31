@@ -492,3 +492,10 @@ body { background: #08080b; }
 .contact-pill:focus-visible .arrow {
   color: #e7c9ff;
 }
+
+/* Keep the footer headline in one consistent typeface. */
+.footer-cta h2 em {
+  font: inherit;
+  font-style: normal;
+  letter-spacing: inherit;
+}
