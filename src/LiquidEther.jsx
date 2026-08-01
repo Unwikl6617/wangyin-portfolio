@@ -8,10 +8,10 @@ export default function LiquidEther({
   isViscous = false,
   viscous = 30,
   iterationsViscous = 32,
-  iterationsPoisson = 32,
+  iterationsPoisson = 20,
   dt = 0.014,
   BFECC = true,
-  resolution = 0.5,
+  resolution = 0.4,
   isBounce = false,
   colors = ['#5227FF', '#FF9FFC', '#B497CF'],
   style = {},
@@ -85,9 +85,9 @@ export default function LiquidEther({
       }
       init(container) {
         this.container = container;
-        this.pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        this.pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
         this.resize();
-        this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: 'low-power' });
         this.renderer.autoClear = false;
         this.renderer.setClearColor(new THREE.Color(0x000000), 0);
         this.renderer.setPixelRatio(this.pixelRatio);
@@ -1105,7 +1105,7 @@ export default function LiquidEther({
     mouseForce,
     resolution,
     viscous,
-    colors,
+    colors.join('|'),
     autoDemo,
     autoSpeed,
     autoIntensity,
