@@ -643,3 +643,13 @@ body { background: #08080b; }
 /* Discourage direct copying, dragging and saving of portfolio media. */
 html, body, #root { -webkit-user-select:none; user-select:none; }
 img, video { -webkit-user-drag:none; user-select:none; }
+
+/* Direct click navigation for both project videos and the image collection. */
+.project-player-nav { position:absolute; z-index:4; top:50%; display:grid; place-items:center; width:52px; height:88px; padding:0; border:1px solid rgba(221,181,255,.34); background:linear-gradient(90deg, rgba(11,8,18,.8), rgba(25,16,38,.44)); color:#e7c5ff; cursor:pointer; opacity:.45; transform:translateY(-50%); transition:opacity .28s ease, background .28s ease, border-color .28s ease, box-shadow .28s ease, width .28s cubic-bezier(.16,1,.3,1); }
+.project-player-nav:hover { width:64px; border-color:rgba(230,191,255,.9); background:rgba(83,40,125,.72); box-shadow:0 0 28px rgba(169,76,242,.42); opacity:1; }
+.project-player-nav span { font:400 31px/1 'DM Mono', monospace; transform:translateY(-2px); }
+.project-player-nav-prev { left:0; border-left:0; border-radius:0 10px 10px 0; }
+.project-player-nav-next { right:0; border-right:0; border-radius:10px 0 0 10px; }
+.project-player-media:hover .project-player-nav, .project-player-nav:focus-visible { opacity:.9; }
+.project-player-nav:focus-visible { outline:2px solid #e2a6ff; outline-offset:3px; }
+@media (max-width:700px) { .project-player-nav { width:42px; height:66px; opacity:.82; }.project-player-nav:hover { width:46px; }.project-player-nav span { font-size:25px; } }

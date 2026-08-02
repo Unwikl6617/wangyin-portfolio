@@ -108,7 +108,10 @@ function App() {
   const galleryPausedRef = useRef(false)
   const items = projectMedia[projectKey]
   const current = items[mediaIndex]
-  const nodes = items.length <= 5 ? items.map((_, index) => index) : Array.from({ length: 5 }, (_, offset) => Math.max(0, Math.min(mediaIndex - 2, items.length - 5)) + offset)
+  const nodeCount = Math.min(5, items.length)
+  const nodeStart = items.length <= nodeCount ? 0 : Math.min(Math.max(mediaIndex - Math.floor(nodeCount / 2), 0), items.length - nodeCount)
+  const nodes = Array.from({ length: nodeCount }, (_, offset) => nodeStart + offset)
+  const nodeProgress = nodeCount < 2 ? 100 : ((mediaIndex - nodeStart) / (nodeCount - 1)) * 100
 
   useEffect(() => {
     const blockEvent = (event) => event.preventDefault()
@@ -330,6 +333,7 @@ function App() {
   }
   const closeProject = () => { saveMediaProgress(); playerRef.current?.pause(); setPlayerOpen(false) }
   const selectMedia = (index) => { saveMediaProgress(); playerRef.current?.pause(); setMediaIndex(index) }
+  const stepMedia = (direction) => selectMedia((mediaIndex + direction + items.length) % items.length)
   const changeMedia = (direction) => {
     if (wheelLock.current) return
     wheelLock.current = true
@@ -349,9 +353,11 @@ function App() {
       <div className="project-player-window">
         <header><span>{current.kind === 'image' ? 'AI图集' : '项目影像'} / {String(mediaIndex + 1).padStart(2, '0')}</span><button type="button" onClick={closeProject}>关闭 ×</button></header>
         <div className="project-player-media" onContextMenu={(event) => event.preventDefault()}>
+          <button type="button" className="project-player-nav project-player-nav-prev" aria-label="上一项作品" onClick={() => stepMedia(-1)}><span aria-hidden="true">←</span></button>
           {current.kind === 'image' ? <img src={current.source} alt="Project artwork" decoding="async" draggable={false} onContextMenu={(event) => event.preventDefault()} /> : <video ref={playerRef} key={current.source} src={current.source} playsInline preload="auto" controls controlsList="nodownload noplaybackrate noremoteplayback" disablePictureInPicture draggable={false} onContextMenu={(event) => event.preventDefault()} onLoadedMetadata={(event) => { const saved = mediaProgressRef.current[current.source]; if (saved?.time) event.currentTarget.currentTime = Math.min(saved.time, Math.max(0, event.currentTarget.duration - 0.1)) }} onTimeUpdate={saveMediaProgress} onPause={saveMediaProgress} onEnded={(event) => { mediaProgressRef.current[current.source] = { time: 0, wasPlaying: false }; event.currentTarget.currentTime = 0 }} />}
+          <button type="button" className="project-player-nav project-player-nav-next" aria-label="下一项作品" onClick={() => stepMedia(1)}><span aria-hidden="true">→</span></button>
         </div>
-        <footer><div className="project-player-hint">使用鼠标滚轮切换作品</div><div className="project-player-progress"><i style={{ width: `${((mediaIndex + 1) / items.length) * 100}%` }} />{nodes.map((index) => <button key={index} type="button" className={index === mediaIndex ? 'is-active' : ''} onClick={() => selectMedia(index)} />)}</div></footer>
+        <footer><div className="project-player-hint">滚轮或两侧按钮切换作品</div><div className="project-player-progress" aria-label={`第 ${mediaIndex + 1} 项，共 ${items.length} 项`}><i style={{ width: `${nodeProgress}%` }} />{nodes.map((index) => <button key={index} type="button" aria-label={`切换至第 ${index + 1} 项`} className={index === mediaIndex ? 'is-active' : ''} onClick={() => selectMedia(index)} />)}</div></footer>
       </div>
     </div>}
 
