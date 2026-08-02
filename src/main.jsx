@@ -100,6 +100,7 @@ function App() {
   const [galleryOpen, setGalleryOpen] = useState(false)
   const [galleryIndex, setGalleryIndex] = useState(0)
   const playerRef = useRef(null)
+  const mediaProgressRef = useRef({})
   const wheelLock = useRef(false)
   const activeSectionRef = useRef('')
   const appRef = useRef(null)
@@ -305,7 +306,7 @@ function App() {
   const copyEmail = async () => { try { await navigator.clipboard.writeText('3592875905@qq.com') } catch {} ; notify('已复制王胤的专属信号，欢迎随时联系~') }
   const triggerHero = () => { setHeroScan(false); requestAnimationFrame(() => { setHeroScan(true); window.setTimeout(() => setHeroScan(false), 980) }) }
   const triggerName = () => { setNameScan(false); requestAnimationFrame(() => { setNameScan(true); window.setTimeout(() => setNameScan(false), 1300) }) }
-  const openProject = (id) => { setProjectKey(id); setMediaIndex(0); setPlayerOpen(true) }
+  const openProject = (id) => { mediaProgressRef.current = {}; setProjectKey(id); setMediaIndex(0); setPlayerOpen(true) }
   const openProjectFromOrb = (id, event) => {
     const bounds = event.currentTarget.getBoundingClientRect()
     event.currentTarget.style.setProperty('--ripple-x', (event.clientX - bounds.left) + 'px')
@@ -322,10 +323,17 @@ function App() {
   const openOtherWork = (index) => { setGalleryIndex(index); setGalleryOpen(true) }
 
   const changeOtherWork = (direction) => setGalleryIndex((index) => (index + direction + otherWorks.length) % otherWorks.length)
-  const closeProject = () => { playerRef.current?.pause(); setPlayerOpen(false) }
+  const saveMediaProgress = () => {
+    const video = playerRef.current
+    if (!video || !Number.isFinite(video.currentTime)) return
+    mediaProgressRef.current[current.source] = { time: video.currentTime, wasPlaying: !video.paused && !video.ended }
+  }
+  const closeProject = () => { saveMediaProgress(); playerRef.current?.pause(); setPlayerOpen(false) }
+  const selectMedia = (index) => { saveMediaProgress(); playerRef.current?.pause(); setMediaIndex(index) }
   const changeMedia = (direction) => {
     if (wheelLock.current) return
     wheelLock.current = true
+    saveMediaProgress()
     playerRef.current?.pause()
     setMediaIndex((index) => (index + direction + items.length) % items.length)
     window.setTimeout(() => { wheelLock.current = false }, 580)
@@ -341,9 +349,9 @@ function App() {
       <div className="project-player-window">
         <header><span>{current.kind === 'image' ? 'AI图集' : '项目影像'} / {String(mediaIndex + 1).padStart(2, '0')}</span><button type="button" onClick={closeProject}>关闭 ×</button></header>
         <div className="project-player-media" onContextMenu={(event) => event.preventDefault()}>
-          {current.kind === 'image' ? <img src={current.source} alt="Project artwork" decoding="async" draggable={false} onContextMenu={(event) => event.preventDefault()} /> : <video ref={playerRef} key={current.source} src={current.source} playsInline preload="metadata" controls controlsList="nodownload noplaybackrate noremoteplayback" disablePictureInPicture draggable={false} onContextMenu={(event) => event.preventDefault()} />}
+          {current.kind === 'image' ? <img src={current.source} alt="Project artwork" decoding="async" draggable={false} onContextMenu={(event) => event.preventDefault()} /> : <video ref={playerRef} key={current.source} src={current.source} playsInline preload="metadata" controls controlsList="nodownload noplaybackrate noremoteplayback" disablePictureInPicture draggable={false} onContextMenu={(event) => event.preventDefault()} onLoadedMetadata={(event) => { const saved = mediaProgressRef.current[current.source]; if (saved?.time) event.currentTarget.currentTime = Math.min(saved.time, Math.max(0, event.currentTarget.duration - 0.1)) }} onTimeUpdate={saveMediaProgress} onPause={saveMediaProgress} onEnded={(event) => { mediaProgressRef.current[current.source] = { time: 0, wasPlaying: false }; event.currentTarget.currentTime = 0 }} />}
         </div>
-        <footer><div className="project-player-hint">使用鼠标滚轮切换作品</div><div className="project-player-progress"><i style={{ width: `${((mediaIndex + 1) / items.length) * 100}%` }} />{nodes.map((index) => <button key={index} type="button" className={index === mediaIndex ? 'is-active' : ''} onClick={() => { playerRef.current?.pause(); setMediaIndex(index) }} />)}</div></footer>
+        <footer><div className="project-player-hint">使用鼠标滚轮切换作品</div><div className="project-player-progress"><i style={{ width: `${((mediaIndex + 1) / items.length) * 100}%` }} />{nodes.map((index) => <button key={index} type="button" className={index === mediaIndex ? 'is-active' : ''} onClick={() => selectMedia(index)} />)}</div></footer>
       </div>
     </div>}
 
