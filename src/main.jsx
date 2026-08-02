@@ -8,7 +8,7 @@ import ElectricBorder from './ElectricBorder'
 const heroVideos = ['/assets/hero-showcase-web.mp4', '/assets/hero-short-clip-web.mp4', '/assets/hero-star-road-web.mp4']
 const projectMedia = {
   '01': [{ source: '/assets/project-spaceship-web.mp4', kind: 'video' }, { source: '/assets/project-mecha-dog-web.mp4', kind: 'video' }, { source: '/assets/project-thirty-seconds-web.mp4', kind: 'video' }, { source: '/assets/project-atmosphere-render-web.mp4', kind: 'video' }, { source: '/assets/project-bug-revision-web.mp4', kind: 'video' }],
-  '02': [{ source: '/assets/campus-ai-work-full-web.mp4', kind: 'video' }, { source: '/assets/campus-shen-sui-full-web.mp4', kind: 'video' }],
+  '02': [{ source: '/assets/campus-ai-work-stream-web.mp4', kind: 'video' }, { source: '/assets/campus-shen-sui-stream-web.mp4', kind: 'video' }],
   '03': Array.from({ length: 20 }, (_, index) => ({ source: `/assets/ai-gallery-${index + 1}.webp`, kind: 'image' })),
 }
 const otherWorks = [
@@ -341,7 +341,7 @@ function App() {
       <div className="project-player-window">
         <header><span>{current.kind === 'image' ? 'AI图集' : '项目影像'} / {String(mediaIndex + 1).padStart(2, '0')}</span><button type="button" onClick={closeProject}>关闭 ×</button></header>
         <div className="project-player-media" onContextMenu={(event) => event.preventDefault()}>
-          {current.kind === 'image' ? <img src={current.source} alt="Project artwork" decoding="async" draggable={false} onContextMenu={(event) => event.preventDefault()} /> : <video ref={playerRef} key={current.source} src={current.source} autoPlay playsInline preload="metadata" controls controlsList="nodownload noplaybackrate noremoteplayback" disablePictureInPicture draggable={false} onContextMenu={(event) => event.preventDefault()} />}
+          {current.kind === 'image' ? <img src={current.source} alt="Project artwork" decoding="async" draggable={false} onContextMenu={(event) => event.preventDefault()} /> : <video ref={playerRef} key={current.source} src={current.source} playsInline preload="metadata" controls controlsList="nodownload noplaybackrate noremoteplayback" disablePictureInPicture draggable={false} onContextMenu={(event) => event.preventDefault()} />}
         </div>
         <footer><div className="project-player-hint">使用鼠标滚轮切换作品</div><div className="project-player-progress"><i style={{ width: `${((mediaIndex + 1) / items.length) * 100}%` }} />{nodes.map((index) => <button key={index} type="button" className={index === mediaIndex ? 'is-active' : ''} onClick={() => { playerRef.current?.pause(); setMediaIndex(index) }} />)}</div></footer>
       </div>
