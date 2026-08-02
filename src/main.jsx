@@ -75,7 +75,6 @@ function SkillConvergence() {
     }, 760)
   }
   return <div className="skill-convergence" aria-label="能力关键词汇聚互动区域">
-    <div className="skill-convergence-intro"><span>04</span><p>CORE SIGNALS / DRAG TO EXPLORE</p></div>
     <div className="skill-field" onPointerMove={(event) => { const bounds = event.currentTarget.getBoundingClientRect(); event.currentTarget.style.setProperty('--grid-x', `${((event.clientX - bounds.left - bounds.width / 2) * .045).toFixed(1)}px`); event.currentTarget.style.setProperty('--grid-y', `${((event.clientY - bounds.top - bounds.height / 2) * .045).toFixed(1)}px`) }}><div className="skill-field-grid" aria-hidden="true" />
       {skillSignals.map((signal) => {
         const position = positions[signal.id]
