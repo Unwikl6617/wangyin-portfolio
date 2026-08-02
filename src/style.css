@@ -653,3 +653,8 @@ img, video { -webkit-user-drag:none; user-select:none; }
 .project-player-media:hover .project-player-nav, .project-player-nav:focus-visible { opacity:.9; }
 .project-player-nav:focus-visible { outline:2px solid #e2a6ff; outline-offset:3px; }
 @media (max-width:700px) { .project-player-nav { width:42px; height:66px; opacity:.82; }.project-player-nav:hover { width:46px; }.project-player-nav span { font-size:25px; } }
+/* A restrained pixel-sunset atmosphere that dissolves into the contact section. */
+.footer-sunset { position:absolute; z-index:0; right:-4%; bottom:-2%; left:-4%; height:66%; pointer-events:none; opacity:.16; background:url('/assets/footer-sunset.png') center bottom / cover no-repeat; mix-blend-mode:screen; filter:saturate(.88) contrast(.94); mask-image:linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.15) 18%, #000 62%); -webkit-mask-image:linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.15) 18%, #000 62%); }
+.footer-cta .footer-noise { z-index:1; }
+.footer-cta .footer-inner { z-index:2; }
+@media (max-width:700px) { .footer-sunset { left:-22%; right:-22%; height:57%; opacity:.13; background-size:auto 100%; } }
