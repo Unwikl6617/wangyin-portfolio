@@ -90,7 +90,7 @@ body { background: #08080b; }
 .project-art { background-color: #15111b; }
 .ability, .about { background: #08080b; }
 .tool-strip p { color: #d2c5de; }
-.footer-cta { background: radial-gradient(circle at 72% 18%, rgba(210,115,255,.30), transparent 22%), linear-gradient(135deg, #15101e 0%, #422064 48%, #0d0913 100%); color: #f7f2ff; }
+.footer-cta { background: radial-gradient(circle at 72% 15%, rgba(210,115,255,.18), transparent 15%), linear-gradient(135deg, #15101e 0%, #422064 48%, #0d0913 100%); color: #f7f2ff; }
 .footer-cta .eyebrow { color: #d5a3ff; }
 .email-link { border-color: #f7f2ff; }
 .footer-line { border-color: rgba(247,242,255,.34); }
